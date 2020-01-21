@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean name="register" class="model.Register">
+        <property name="username" value="username"></property>
+        <property name="password" value="password"></property>
+    </bean>
+    <bean name="login" class="model.Login">
+        <property name="username" value="username"></property>
+        <property name="password" value="password"></property>
+    </bean>
+    <bean name="cart" class="model.Cart">
+        <constructor-arg index="0" value=""/>
+        <constructor-arg index="1" value=""/>
+        <constructor-arg index="2" value=""/>
+    </bean>
+    <bean name="product" class="model.Product">
+        <constructor-arg index="0" value=""/>
+        <constructor-arg index="1" value=""/>
+        <constructor-arg index="2" value=""/>
+    </bean>
+    <bean name="ticket" class="model.Ticket">
+        <constructor-arg index="0" value=""/>
+        <constructor-arg index="1" value=""/>
+        <constructor-arg index="2" value=""/>
+        <constructor-arg index="3" value=""/>
+    </bean>
+</beans>
