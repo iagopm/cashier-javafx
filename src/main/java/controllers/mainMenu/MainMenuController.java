@@ -2,6 +2,7 @@ package controllers.mainMenu;
 
 import controllers.cashiermenu.CashierController;
 import com.itextpdf.text.DocumentException;
+import controllers.chartMenuController.ChartMenuController;
 import controllers.settingsmenu.SettingsMenuController;
 import dao.ApplicationDAO;
 import dao.ApplicationDAOImpl;
@@ -11,13 +12,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import utils.GenerateInform;
 import utils.ParseCartToInform;
-import utils.ProductsUnitSoldHandler;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,8 +32,8 @@ public class MainMenuController {
     Label welcomeLabel;
     @FXML
     Stage primaryStage = new Stage();
-    @FXML
-    PieChart chart;
+//    @FXML
+//    PieChart chart;
 
     public MainMenuController(String username) {
         this.username = username;
@@ -47,14 +46,14 @@ public class MainMenuController {
 
     public void openGraph(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("layouts/chart.fxml"));
-        loader.setController(this);
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("layouts/chartMenu.fxml"));
+        loader.setController(new ChartMenuController(dao));
         Parent root = loader.load();
-        stage.setTitle("Chart");
+        stage.setTitle("Chart Menu");
 
         stage.setScene(new Scene(root));
         stage.show();
-        chart.setData(new ProductsUnitSoldHandler().handle(dao.findAllCarts(), dao.findAllProducts()));
+       // chart.setData(new ProductsUnitSoldHandler().handle(dao.findAllCarts(), dao.findAllProducts()));
     }
 
 

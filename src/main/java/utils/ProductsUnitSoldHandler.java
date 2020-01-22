@@ -8,10 +8,12 @@ import model.Product;
 import model.ProductsUnitSoldForGraph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ProductsUnitSoldHandler {
-    public ObservableList<PieChart.Data> handle(List<Cart> allCarts, List<Product> allProducts) {
+    public ObservableList<PieChart.Data> handle(List<Cart> allCarts, List<Product> allProducts, String[] filter) {
+        List<String> barcodesFilter = Arrays.asList(filter);
         List<ProductsUnitSoldForGraph> list = new ArrayList<>();
         for (Product product : allProducts) {
             list.add(new ProductsUnitSoldForGraph(product.getBarcode(), 0));
@@ -27,9 +29,19 @@ public class ProductsUnitSoldHandler {
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList();
 
         for (ProductsUnitSoldForGraph productsUnitSoldForGraph : list) {
-            PieChart.Data unit = new PieChart.Data(String.valueOf(productsUnitSoldForGraph.getBarcode()), productsUnitSoldForGraph.unitsSold);
-            data.add(unit);
+            for (String s : barcodesFilter) {
+                if (productsUnitSoldForGraph.getBarcode().toString().equals(s)) {
+                    PieChart.Data unit = new PieChart.Data(String.valueOf(productsUnitSoldForGraph.getBarcode()), productsUnitSoldForGraph.unitsSold);
+                    data.add(unit);
+                }
+            }
         }
+
         return data;
     }
+
+    public void add(ProductsUnitSoldForGraph productsUnitSoldForGraph, ObservableList<PieChart.Data> data) {
+
+    }
+
 }
