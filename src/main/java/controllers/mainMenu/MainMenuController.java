@@ -2,6 +2,7 @@ package controllers.mainMenu;
 
 import controllers.cashiermenu.CashierController;
 import com.itextpdf.text.DocumentException;
+import controllers.settingsmenu.SettingsMenuController;
 import dao.ApplicationDAO;
 import dao.ApplicationDAOImpl;
 import javafx.event.ActionEvent;
@@ -69,16 +70,42 @@ public class MainMenuController {
 
     }
 
-    public void settings(ActionEvent actionEvent) {
+    public void settings(ActionEvent actionEvent) throws IOException {
         File file = new File("src/main/resources/machineConfig.properties");
 
+        Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+        stage.close();
 
+        SettingsMenuController settingsMenuController = new SettingsMenuController(dao);
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("layouts/settingsMenu.fxml"));
+        loader.setController(settingsMenuController);
+        Parent root = loader.load();
+        primaryStage.setTitle("Cashier Menu");
 
-        try {
-            Runtime.getRuntime().exec("Notepad " + file.getAbsolutePath());
-        } catch (Exception e) {
-            e.printStackTrace(System.err);
-        }
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                MainMenuController mainMenuController = new MainMenuController(username);
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("layouts/mainMenu.fxml"));
+                loader.setController(mainMenuController);
+                Parent root = null;
+                Stage stage1 = new Stage();
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                stage1.setTitle("application.Main menu");
+
+                stage1.setScene(new Scene(root));
+                stage1.show();
+
+                mainMenuController.initialize(loader.getLocation(), loader.getResources());
+            }
+        });
+        settingsMenuController.initialize(loader.getLocation(), loader.getResources());
+
 
     }
 
@@ -97,7 +124,7 @@ public class MainMenuController {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {
                 MainMenuController mainMenuController = new MainMenuController(username);
-                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("layouts/controllers.cashiermenu.mainMenu.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("layouts/mainMenu.fxml"));
                 loader.setController(mainMenuController);
                 Parent root = null;
                 Stage stage1 = new Stage();

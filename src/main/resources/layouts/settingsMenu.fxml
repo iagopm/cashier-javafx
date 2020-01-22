@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="layouts.SettingsMenu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
-      <Button layoutX="517.0" layoutY="360.0" mnemonicParsing="false" text="Aceptar" />
+      <Button onAction="#changeSettings" layoutX="517.0" layoutY="360.0" mnemonicParsing="false" text="Aceptar" />
       <ChoiceBox fx:id="currencyBox" layoutX="203.0" layoutY="47.0" prefWidth="150.0" />
       <Label layoutX="78.0" layoutY="52.0" text="Currency" />
       <TextField fx:id="companyNameBox" layoutX="107.0" layoutY="113.0" prefHeight="26.0" prefWidth="342.0" promptText="Company Name" />

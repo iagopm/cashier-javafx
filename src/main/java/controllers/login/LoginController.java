@@ -34,7 +34,7 @@ public class LoginController {
             stage.close();
 
             MainMenuController mainMenuController = new MainMenuController(usernameBox.getText());
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("layouts/controllers.cashiermenu.mainMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("layouts/mainMenu.fxml"));
             loader.setController(mainMenuController);
             Parent root = loader.load();
             primaryStage.setTitle("application.Main menu");
