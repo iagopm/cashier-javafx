@@ -2,8 +2,9 @@ package controllers.mainMenu;
 
 import controllers.cashiermenu.CashierController;
 import com.itextpdf.text.DocumentException;
-import controllers.chartMenuController.ChartMenuController;
+import controllers.chartMenu.ChartMenuController;
 import controllers.settingsmenu.SettingsMenuController;
+import controllers.webView.WebViewController;
 import dao.ApplicationDAO;
 import dao.ApplicationDAOImpl;
 import javafx.event.ActionEvent;
@@ -26,14 +27,11 @@ import java.util.ResourceBundle;
 public class MainMenuController {
     ApplicationDAO dao = new ApplicationDAOImpl();
 
-
     String username;
     @FXML
     Label welcomeLabel;
     @FXML
     Stage primaryStage = new Stage();
-//    @FXML
-//    PieChart chart;
 
     public MainMenuController(String username) {
         this.username = username;
@@ -53,7 +51,6 @@ public class MainMenuController {
 
         stage.setScene(new Scene(root));
         stage.show();
-       // chart.setData(new ProductsUnitSoldHandler().handle(dao.findAllCarts(), dao.findAllProducts()));
     }
 
 
@@ -95,7 +92,7 @@ public class MainMenuController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                stage1.setTitle("application.Main menu");
+                stage1.setTitle("Main menu");
 
                 stage1.setScene(new Scene(root));
                 stage1.show();
@@ -132,7 +129,7 @@ public class MainMenuController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                stage1.setTitle("application.Main menu");
+                stage1.setTitle("Main menu");
 
                 stage1.setScene(new Scene(root));
                 stage1.show();
@@ -140,5 +137,45 @@ public class MainMenuController {
             }
         });
         cashierController.initialize(loader.getLocation(), loader.getResources());
+    }
+
+    public void goToWeb() {
+        Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+        stage.close();
+
+        WebViewController webViewController = new WebViewController(dao);
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("layouts/webView.fxml"));
+        loader.setController(webViewController);
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        primaryStage.setTitle("Web");
+
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+        webViewController.initialize(loader.getLocation(), loader.getResources());
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                MainMenuController mainMenuController = new MainMenuController(username);
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("layouts/mainMenu.fxml"));
+                loader.setController(mainMenuController);
+                Parent root = null;
+                Stage stage1 = new Stage();
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                stage1.setTitle("Main menu");
+
+                stage1.setScene(new Scene(root));
+                stage1.show();
+                mainMenuController.initialize(loader.getLocation(), loader.getResources());
+            }
+        });
+
     }
 }

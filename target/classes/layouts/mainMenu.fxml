@@ -8,40 +8,41 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <AnchorPane layoutX="257.0" layoutY="45.0">
-               <children>
-                  <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="254.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/Settings-icon.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="generateInformButton" layoutY="165.0" mnemonicParsing="false" onAction="#generateInform" prefHeight="105.0" prefWidth="127.0" text="Generate Inform" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="settingsButton" layoutX="254.0" layoutY="21.0" mnemonicParsing="false" onAction="#settings" opacity="0.0" prefHeight="65.0" prefWidth="65.0" />
-                  <Button fx:id="cartManagerButton" layoutY="41.0" mnemonicParsing="false" onAction="#openCartManager" prefHeight="105.0" prefWidth="127.0" text="Cart Manager" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="welcomeLabel" layoutX="-106.0" prefHeight="31.0" prefWidth="319.0" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="21.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="graphButton" layoutX="140.0" layoutY="165.0" mnemonicParsing="false" onAction="#openGraph" prefHeight="105.0" prefWidth="127.0" text="Product Graph" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
+            <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="511.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/Settings-icon.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="webButton" layoutX="257.0" layoutY="210.0" mnemonicParsing="false" onAction="#goToWeb" prefHeight="105.0" prefWidth="127.0" text="Web" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="settingsButton" layoutX="511.0" layoutY="66.0" mnemonicParsing="false" onAction="#settings" opacity="0.0" prefHeight="65.0" prefWidth="65.0" />
+            <Button fx:id="cartManagerButton" layoutX="257.0" layoutY="86.0" mnemonicParsing="false" onAction="#openCartManager" prefHeight="105.0" prefWidth="127.0" text="Cart Manager" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Label fx:id="welcomeLabel" layoutX="151.0" layoutY="45.0" prefHeight="31.0" prefWidth="319.0" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+            <Button fx:id="graphButton" layoutX="117.0" layoutY="86.0" mnemonicParsing="false" onAction="#openGraph" prefHeight="105.0" prefWidth="127.0" text="Product Graph" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="generateInformButton1" layoutX="117.0" layoutY="210.0" mnemonicParsing="false" onAction="#generateInform" prefHeight="105.0" prefWidth="127.0" text="Generate Inform" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
     </AnchorPane>
   </children>
